@@ -1,9 +1,10 @@
-﻿using LiveSplit.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+
+using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components
 {
@@ -32,7 +33,7 @@ namespace LiveSplit.UI.Components
         {
             InternalComponent.DisplayTwoRows = Settings.Display2Rows;
 
-            InternalComponent.NameLabel.HasShadow 
+            InternalComponent.NameLabel.HasShadow
                 = InternalComponent.ValueLabel.HasShadow
                 = state.LayoutSettings.DropShadows;
 
@@ -47,7 +48,7 @@ namespace LiveSplit.UI.Components
             {
                 InternalComponent.NameLabel.HorizontalAlignment = StringAlignment.Near;
                 InternalComponent.ValueLabel.HorizontalAlignment = StringAlignment.Far;
-                InternalComponent.NameLabel.VerticalAlignment = 
+                InternalComponent.NameLabel.VerticalAlignment =
                     mode == LayoutMode.Horizontal || Settings.Display2Rows ? StringAlignment.Near : StringAlignment.Center;
                 InternalComponent.ValueLabel.VerticalAlignment =
                     mode == LayoutMode.Horizontal || Settings.Display2Rows ? StringAlignment.Far : StringAlignment.Center;
@@ -60,8 +61,8 @@ namespace LiveSplit.UI.Components
         private void DrawBackground(Graphics g, LiveSplitState state, float width, float height)
         {
             if (Settings.BackgroundColor.A > 0
-                || Settings.BackgroundGradient != GradientType.Plain
-                && Settings.BackgroundColor2.A > 0)
+                || (Settings.BackgroundGradient != GradientType.Plain
+                && Settings.BackgroundColor2.A > 0))
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
@@ -92,9 +93,9 @@ namespace LiveSplit.UI.Components
 
         public float VerticalHeight => InternalComponent.VerticalHeight;
 
-        public float MinimumWidth => InternalComponent.MinimumWidth; 
+        public float MinimumWidth => InternalComponent.MinimumWidth;
 
-        public float HorizontalWidth => InternalComponent.HorizontalWidth; 
+        public float HorizontalWidth => InternalComponent.HorizontalWidth;
 
         public float MinimumHeight => InternalComponent.MinimumHeight;
 
@@ -131,6 +132,9 @@ namespace LiveSplit.UI.Components
         {
         }
 
-        public int GetSettingsHashCode() => Settings.GetSettingsHashCode();
+        public int GetSettingsHashCode()
+        {
+            return Settings.GetSettingsHashCode();
+        }
     }
 }
